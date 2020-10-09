@@ -22,7 +22,9 @@ class App extends Component {
         {this.state.persons.map((people, index) => {
           return <First
             key={index}
-            name={people.name} />
+            name={people.name}
+            email={people.email}
+            address={people.address}/>
         })}
      
         <Counter />
