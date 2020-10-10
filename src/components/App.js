@@ -1,38 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
-import Counter from './Counter/Counter';
-import First from './First/First';
+
 
 
 class App extends Component {
 
-  state = {
-    persons: [
-      { name: 'Joyanta Kumer Sarker', email: 'jsarker96@gmail.com', address: 'Professorpara' },
-      { name: 'Sarker Kumar', email: 'kumarsarker@gmail.com', address: 'Palashbari' },
-      { name: 'Kumer Sarker', email: 'kumarsarker@gmail.com', address: 'Gaibandha' }
-    ]
+  state= {
+    name: '',
+    click: 0
   }
   
+  clickhandeler = () => {
+    alert('I am Clicked')
+    this.setState({
+      click: this.state.click + 1
+    })
+}
+
+  inputHandler = (event) => {
+    this.setState({
+      name: event.target.value
+    })
+  }
 
   render() {
     return (
       <div className="App">
 
-        {this.state.persons.map((people, index) => {
-          return <First
-            key={index}
-            name={people.name}
-            email={people.email}
-            address={people.address}/>
-        })}
-     
-        <Counter />
+        <h1>
+        <div className='container my-5'>
+          <input onChange={this.inputHandler}  value={this.state.name} type='text' placeholder='Enter Your Name'/><br/>
+        <button className='btn btn-success' onClick={this.clickhandeler}>
+          Click Me
+     </button>
+        </div>
 
-  
+        Number of Button Clicked: {this.state.click}
+     
+        {this.state.name ? <p> Hello Mr,{this.state.name}</p> : '' }
+
+        </h1>
       </div>
+        
     );
   }
 }
 
 export default App;
+
+//Button Event is inLine event Here
